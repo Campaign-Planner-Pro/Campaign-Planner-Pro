@@ -59,6 +59,7 @@ group :development, :test do
   gem 'active_designer'
   gem 'factory_bot'
   gem 'simplecov', require: false, group: :test
+  gem 'faker'
 end
 
 group :development do
