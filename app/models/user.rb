@@ -5,7 +5,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
-  # validates :role, presence: true
-  # validates :username, presence: true, uniqueness: true
-  # has_secure_password
 end
