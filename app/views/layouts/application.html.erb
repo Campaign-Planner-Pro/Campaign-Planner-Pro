@@ -11,8 +11,8 @@
   </head>
 
   <body>
+    <%= button_to "logout", destroy_user_session_path, method: :delete %>
     <%= csrf_meta_tags %>
-    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>

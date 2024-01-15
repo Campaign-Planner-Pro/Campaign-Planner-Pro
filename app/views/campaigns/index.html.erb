@@ -1,1 +1,15 @@
-<%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Campaigns</h1>
+
+<div id="campaigns">
+  <% @campaigns.each do |campaign| %>
+    <%= render campaign %>
+    <p>
+      <%= link_to "Show this campaign", campaign %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New campaign", new_campaign_path %>
+<%= button_to "logout", destroy_user_session_path, method: :delete %>
