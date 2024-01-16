@@ -1,0 +1,9 @@
+<h3> All Campaigns<h3>
+
+<ul id="campaigns">
+    <% @campaigns.each do |campaign| %>
+        <li>
+            <%= campaign.name %>
+        <li>
+    <% end %>
+</ul>    
