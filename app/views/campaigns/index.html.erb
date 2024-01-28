@@ -3,7 +3,8 @@
 <ul id="campaigns">
     <% @campaigns.each do |campaign| %>
         <li>
-            <%= campaign.name %>
+            <%=link_to campaign.name, campaign_path(campaign) %>
         <li>
     <% end %>
+    <%= link_to "Create New Campaign", new_campaign_path, class: "new-campaign" %>
 </ul>    

@@ -1,0 +1,5 @@
+<h1><%= @campaign.name %></h1>
+<p><%= @campaign.description %></p>
+<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
+<%= link_to "Delete", campaign_path(@campaign), method: :delete, data: {confirm: "Do you really want to delete the campaign?"} %>
+<%= link_to "<< Back to Campaign List", campaigns_path %>

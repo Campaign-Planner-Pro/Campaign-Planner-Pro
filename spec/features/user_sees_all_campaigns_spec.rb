@@ -11,8 +11,8 @@ describe "user sees all their campaigns" do
 
             visit '/campaigns'
 
-            expect(page).to have_content(campaign_1.name)
-            expect(page).to have_content(campaign_2.name)
+            expect(page).to have_link(campaign_1.name)
+            expect(page).to have_link(campaign_2.name)
         end
         it "only displays campaigns created by the user" do
             user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
@@ -24,10 +24,20 @@ describe "user sees all their campaigns" do
             campaign_3 = Campaign.create!(user: user2, name: "name 3", description:"description 3")
             visit '/campaigns'
 
-            expect(page).to have_content(campaign_1.name)
-            expect(page).to have_content(campaign_2.name)
-            expect(page).not_to have_content(campaign_3.name)
-
+            expect(page).to have_link(campaign_1.name)
+            expect(page).to have_link(campaign_2.name)
+            expect(page).not_to have_link(campaign_3.name)
         end 
+        it "displays link to create new campaign" do
+            user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
+            login_as(user, :scope => :user)
+            
+            campaign_1 = Campaign.create!(user: user, name: "name 1", description:"description 1")
+            campaign_2 = Campaign.create!(user: user, name: "name 2", description:"description 2")
+
+            visit '/campaigns'
+
+            expect(page).to have_link("Create New Campaign")
+        end
     end
 end
