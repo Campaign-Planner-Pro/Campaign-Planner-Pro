@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "campaigns#index" 
   resources :campaigns
+  resources :nonplayer_characters
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
