@@ -18,6 +18,13 @@ class NonplayerCharactersController < ApplicationController
     end
   end
 
+  def destroy
+    nonplayer_character = NonplayerCharacter.find(params[:id])
+    nonplayer_character.destroy
+    redirect_to campaign_path(nonplayer_character.campaign_id)
+    flash[:notice] = 'Nonplayer Character was successfully deleted.'
+  end
+
   private
 
   def nonplayer_character_params
