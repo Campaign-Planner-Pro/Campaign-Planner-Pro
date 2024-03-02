@@ -4,9 +4,14 @@
 <%= link_to "Delete", campaign_path(@campaign), method: :delete, data: {confirm: "Do you really want to delete the campaign?"} %>
 <%= link_to "<< Back to Campaign List", campaigns_path %>
 
-<h3> Nonplayer Characters </h3>
-<%= link_to "Create New Nonplayer Character", new_campaign_nonplayer_character_path(@campaign) %>
-<% @campaign.nonplayer_characters.each do |nonplayer_character| %>
-  <p><%= nonplayer_character.name %></p>
-  <p><%= nonplayer_character.background %></p>
-<% end %>
+<div id='npcs'>
+<h3> Nonplayer Characters 
+  <span><%= link_to "Create New NPC", new_campaign_nonplayer_character_path(@campaign) %> </span>
+</h3>
+  <ul>
+    <% @campaign.nonplayer_characters.each do |nonplayer_character| %>
+      <li>Name: <%= nonplayer_character.name %></li>
+      <ul>Background: <%= nonplayer_character.background %></ul><br>
+    <% end %>
+  </ul>
+</div>
