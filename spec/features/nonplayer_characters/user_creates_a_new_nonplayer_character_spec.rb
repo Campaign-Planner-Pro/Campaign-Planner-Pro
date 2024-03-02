@@ -7,18 +7,18 @@ RSpec.describe 'User creates a new nonplayer character', type: :feature do
     @campaign1 = @user.campaigns.create!(name: 'name 1', description: 'description 1')
   end
 
-  scenario 'a user creates a campaign' do
-    context 'within a campaign a user creates a new nonplayer character' do
+  describe 'a user creates a campaign' do
+    scenario 'within a campaign a user creates a new nonplayer character' do
       visit campaign_path(@campaign1)
 
-      click_link 'Create New Nonplayer Character'
+      click_link 'Create New NPC'
 
       expect(current_path).to eq(new_campaign_nonplayer_character_path(@campaign1))
 
       fill_in 'Name', with: 'Snoop Doggg'
       fill_in 'Background', with: 'Hes basically a bard, but with a lot of weed.'
 
-      click_button 'Create new Nonplayer Character'
+      click_button 'Create'
 
       expect(current_path).to eq(campaign_path(@campaign1))
       expect(page).to have_content('Nonplayer Character was successfully created.')
