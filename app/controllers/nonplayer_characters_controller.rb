@@ -1,6 +1,6 @@
 class NonplayerCharactersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_campaign, only: [:new, :create]
+  before_action :set_campaign, only: [:new, :create, :destroy]
 
   def new
     @campaign = Campaign.find(params[:campaign_id])
@@ -21,8 +21,8 @@ class NonplayerCharactersController < ApplicationController
   def destroy
     nonplayer_character = NonplayerCharacter.find(params[:id])
     nonplayer_character.destroy
-    redirect_to campaign_path(nonplayer_character.campaign_id)
     flash[:notice] = 'Nonplayer Character was successfully deleted.'
+    redirect_to campaign_path(@campaign)
   end
 
   private

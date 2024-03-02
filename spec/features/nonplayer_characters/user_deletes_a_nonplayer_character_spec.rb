@@ -14,7 +14,7 @@ RSpec.describe 'User deletes a nonplayer character', type: :feature do
     scenario 'within a campaign a user deletes a nonplayer character' do
       visit campaign_path(@campaign1)
 
-      click_link "Delete #{@npc1.id}"
+      click_button "Delete #{@npc1.name}"
 
       expect(current_path).to eq(campaign_path(@campaign1))
       expect(page).to have_content('Nonplayer Character was successfully deleted.')
