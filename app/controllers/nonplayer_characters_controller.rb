@@ -25,6 +25,23 @@ class NonplayerCharactersController < ApplicationController
     redirect_to campaign_path(@campaign)
   end
 
+  def edit
+    @campaign = Campaign.find(params[:campaign_id])
+    @nonplayer_character = NonplayerCharacter.find(params[:id])
+  end
+
+  def update
+    campaign = Campaign.find(params[:campaign_id])
+    nonplayer_character = NonplayerCharacter.find(params[:id])
+
+    if nonplayer_character.update(nonplayer_character_params)
+      redirect_to campaign_path(campaign)
+      flash[:notice] = 'Nonplayer Character was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def nonplayer_character_params

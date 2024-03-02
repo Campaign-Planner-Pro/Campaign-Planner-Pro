@@ -11,8 +11,15 @@
   <ul>
     <% @campaign.nonplayer_characters.each do |nonplayer_character| %>
       <li>Name: <%= nonplayer_character.name %></li>
-      <ul>Background: <%= nonplayer_character.background %></ul>
-      <%= button_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: {confirm: "Do you really want to delete this NPC?"} %><br>
+        <ul>Background: <%= nonplayer_character.background %></ul>
+      <span>
+        <%= button_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: {confirm: "Do you really want to delete this NPC?"} %>
+      </span>
+      <span>
+        <%= button_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get %>
+      </span><br>
     <% end %>
   </ul>
 </div>
+
+

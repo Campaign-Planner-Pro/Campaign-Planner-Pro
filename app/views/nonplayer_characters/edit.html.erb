@@ -1,0 +1,10 @@
+<h1>Edit Nonplayer Character</h1>
+<%= form_with model: @nonplayer_character, url: campaign_nonplayer_character_path(@campaign, @nonplayer_character), local: true, method: :patch do |f| %>
+  <%= f.label :name  %>
+  <%= f.text_field :name %>
+
+  <%= f.label :background %>
+  <%= f.text_area :background %>
+
+  <%= f.submit "Update Nonplayer Character" %>
+<% end %>
