@@ -1,7 +1,6 @@
 <h1><%= @campaign.name %></h1>
 <p><%= @campaign.description %></p>
-<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
-<%= link_to "Delete", campaign_path(@campaign), method: :delete, data: {confirm: "Do you really want to delete the campaign?"} %>
+<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %><%= link_to "Delete", campaign_path(@campaign), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{@campaign.name}" } %>
 <%= link_to "<< Back to Campaign List", campaigns_path %>
 
 <div id='npcs'>
@@ -13,10 +12,10 @@
       <li>Name: <%= nonplayer_character.name %></li>
         <ul>Background: <%= nonplayer_character.background %></ul>
       <span>
-        <%= button_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: {confirm: "Do you really want to delete this NPC?"} %>
+        <%= link_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{nonplayer_character.name}"} %>
       </span>
       <span>
-        <%= button_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get %>
+        <%= link_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get %>
       </span><br>
     <% end %>
   </ul>

@@ -14,7 +14,7 @@ RSpec.describe 'User updates a nonplayer character', type: :feature do
     scenario 'within a campaign a user updates a nonplayer character' do
       visit campaign_path(@campaign1)
 
-      click_button "Update #{@npc1.name}"
+      click_link "Update #{@npc1.name}"
 
       expect(current_path).to eq(edit_campaign_nonplayer_character_path(@campaign1, @npc1))
 
