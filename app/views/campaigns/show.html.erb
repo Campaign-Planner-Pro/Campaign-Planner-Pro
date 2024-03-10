@@ -3,22 +3,35 @@
 <%= link_to "Edit Campaign", edit_campaign_path(@campaign) %><%= link_to "Delete", campaign_path(@campaign), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{@campaign.name}" } %>
 <%= link_to "<< Back to Campaign List", campaigns_path %>
 
-<div id='npcs'>
-<h3> Nonplayer Characters 
-  <span><%= link_to "Create New NPC", new_campaign_nonplayer_character_path(@campaign) %> </span>
-</h3>
-  <ul>
-    <% @campaign.nonplayer_characters.each do |nonplayer_character| %>
-      <li>Name: <%= nonplayer_character.name %></li>
+
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-bold">NPCS</h1>
+    <%= link_to "New NPC", new_campaign_nonplayer_character_path(@campaign), class: "btn btn-primary",
+      data: {turbo_frame: "slide-over"}  %>
+  </div>
+
+  <div id="npcs" class="min-w-full">
+      <ul>
+      <% @campaign.nonplayer_characters.each do |nonplayer_character| %>
+        <ul>Name: <%= nonplayer_character.name %></ul>
         <ul>Background: <%= nonplayer_character.background %></ul>
-      <span>
-        <%= link_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{nonplayer_character.name}"} %>
-      </span>
-      <span>
-        <%= link_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get %>
-      </span><br>
-    <% end %>
-  </ul>
+          <span>
+            <%= link_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{nonplayer_character.name}"} %>
+          </span>
+          <span>
+            <%= link_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get %>
+          </span><br>
+      <% end %>
+        </ul>
+  </div>
 </div>
+<!-- This will be empty when the page loads -->
+<%= turbo_frame_tag "slide-over" %>
 
 

@@ -1,0 +1,9 @@
+<%= form_with model: @nonplayer_character, url: campaign_nonplayer_characters_path(@campaign), local: true do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+    <%= f.label :background %>
+    <%= f.text_area :background, required: true %>
+  </p>
+  <%= f.submit data: { turbo_frame: "_top"} %>
+<% end %>
