@@ -11,7 +11,7 @@ RSpec.describe 'User creates a new nonplayer character', type: :feature do
     scenario 'within a campaign a user creates a new nonplayer character' do
       visit campaign_path(@campaign1)
 
-      click_link 'Create New NPC'
+      click_link 'New NPC'
 
       expect(current_path).to eq(new_campaign_nonplayer_character_path(@campaign1))
 
