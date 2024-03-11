@@ -18,14 +18,14 @@
 
   <div id="npcs" class="min-w-full">
       <ul>
-      <% @campaign.nonplayer_characters.each do |nonplayer_character| %>
+      <% @campaign.nonplayer_characters.order(:name).each do |nonplayer_character| %>
         <ul>Name: <%= nonplayer_character.name %></ul>
         <ul>Background: <%= nonplayer_character.background %></ul>
           <span>
-            <%= link_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{nonplayer_character.name}"} %>
+            <%= link_to "Delete #{nonplayer_character.name}", campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :delete, class: "btn btn-primary", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{nonplayer_character.name}"} %>
           </span>
           <span>
-            <%= link_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get %>
+            <%= link_to "Update #{nonplayer_character.name}", edit_campaign_nonplayer_character_path(@campaign, nonplayer_character), method: :get, class: "btn btn-primary", data: { "turbo-frame": "slide-over" } %>
           </span><br>
       <% end %>
         </ul>
