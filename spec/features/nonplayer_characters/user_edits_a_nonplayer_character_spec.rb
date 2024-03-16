@@ -20,7 +20,7 @@ RSpec.describe 'User updates a nonplayer character', type: :feature do
 
       fill_in 'Name', with: 'Snoop Dog'
 
-      click_on 'Update Nonplayer Character'
+      click_on 'Update'
 
       expect(current_path).to eq(campaign_path(@campaign1))
       expect(page).to have_content('Nonplayer Character was successfully updated.')
