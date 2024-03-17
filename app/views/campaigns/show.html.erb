@@ -48,6 +48,9 @@
       <% @campaign.player_characters.order(:name).each do |player_character| %>
         <ul>Name: <%= player_character.name %></ul>
         <ul>Background: <%= player_character.background %></ul>
+          <span>
+            <%= link_to "Delete #{player_character.name}", campaign_player_character_path(@campaign, player_character), method: :delete, class: "btn btn-primary", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{player_character.name}"} %>
+          </span>
       <% end %>
         </ul>
   </div>

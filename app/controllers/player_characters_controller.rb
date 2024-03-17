@@ -1,5 +1,5 @@
 class PlayerCharactersController < ApplicationController
-  before_action :set_campaign, only: [:new, :create]
+  before_action :set_campaign, only: [:new, :create, :destroy]
 
   def new
     @campaign = Campaign.find(params[:campaign_id])
@@ -15,6 +15,13 @@ class PlayerCharactersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    player_character = PlayerCharacter.find(params[:id])
+    player_character.destroy
+    flash[:notice] = 'Player Character was successfully deleted.'
+    redirect_to campaign_path(@campaign)
   end
 
   private
