@@ -1,5 +1,5 @@
 class PlayerCharactersController < ApplicationController
-  before_action :set_campaign, only: [:new, :create, :destroy, :edit, :update]
+  before_action :set_campaign, only: %I[new create destroy edit update]
 
   def new
     @campaign = Campaign.find(params[:campaign_id])
