@@ -1,7 +1,7 @@
 <h1><%= @campaign.name %></h1>
 <p><%= @campaign.description %></p>
-<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %><%= link_to "Delete", campaign_path(@campaign), method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{@campaign.name}" } %>
-<%= link_to "<< Back to Campaign List", campaigns_path %>
+<%= link_to "Edit Campaign", edit_campaign_path(@campaign), class: "btn btn-primary" %><%= link_to "Delete", campaign_path(@campaign), class: "btn btn-primary", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{@campaign.name}" } %>
+<%= link_to "<< Back to Campaign List", campaigns_path, class: "btn btn-primary" %>
 
 
 
@@ -31,6 +31,28 @@
         </ul>
   </div>
 </div>
+
+  <div class="w-full">
+  <% if notice.present? %>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-bold">PCS</h1>
+    <%= link_to "New PC", new_campaign_player_character_path(@campaign), class: "btn btn-primary",
+      data: {turbo_frame: "slide-over"}  %>
+  </div>
+
+  <div id="npcs" class="min-w-full">
+      <ul>
+      <% @campaign.player_characters.order(:name).each do |player_character| %>
+        <ul>Name: <%= player_character.name %></ul>
+        <ul>Background: <%= player_character.background %></ul>
+      <% end %>
+        </ul>
+  </div>
+</div>
+
 <!-- This will be empty when the page loads -->
 <%= turbo_frame_tag "slide-over" %>
 
