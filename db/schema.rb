@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_22_012051) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_17_184113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_012051) do
     t.index ["campaign_id"], name: "index_nonplayer_characters_on_campaign_id"
   end
 
+  create_table "player_characters", force: :cascade do |t|
+    t.string "name"
+    t.string "background"
+    t.bigint "campaign_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_player_characters_on_campaign_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -47,4 +56,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_012051) do
 
   add_foreign_key "campaigns", "users"
   add_foreign_key "nonplayer_characters", "campaigns"
+  add_foreign_key "player_characters", "campaigns"
 end

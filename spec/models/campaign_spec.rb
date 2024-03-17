@@ -9,5 +9,7 @@ describe Campaign, type: :model do
   describe "relationships" do
     it {should belong_to(:user)}
     it {should have_many(:nonplayer_characters)}
+    it {should have_many(:player_characters)}
+
   end
 end
