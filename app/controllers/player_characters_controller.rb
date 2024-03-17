@@ -1,5 +1,5 @@
 class PlayerCharactersController < ApplicationController
-  before_action :set_campaign, only: [:new, :create, :destroy]
+  before_action :set_campaign, only: [:new, :create, :destroy, :edit, :update]
 
   def new
     @campaign = Campaign.find(params[:campaign_id])
@@ -22,6 +22,23 @@ class PlayerCharactersController < ApplicationController
     player_character.destroy
     flash[:notice] = 'Player Character was successfully deleted.'
     redirect_to campaign_path(@campaign)
+  end
+
+  def edit
+    @campaign = Campaign.find(params[:campaign_id])
+    @player_character = PlayerCharacter.find(params[:id])
+  end
+
+  def update
+    campaign = Campaign.find(params[:campaign_id])
+    player_character = PlayerCharacter.find(params[:id])
+
+    if player_character.update(player_character_params)
+      redirect_to campaign_path(campaign)
+      flash[:notice] = 'Player Character was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   private
