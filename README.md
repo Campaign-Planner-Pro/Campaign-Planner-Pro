@@ -1,7 +1,5 @@
 <div align="center">
-<h1> 
     <img src="https://github.com/Campaign-Planner-Pro/Campaign-Planner-Pro/assets/127896538/94cf7315-fde5-449f-ba7e-d5f69c6c204c" alt="Campaign">
-</h1>
 </div>
 
 ![GitHub issues](https://img.shields.io/github/issues/Campaign-Planner-Pro/Campaign-Planner-Pro.svg)
@@ -33,9 +31,12 @@ Technologies used:<br>
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
 </div>
 
+---
+
 </div>
 
-Campaign Planner Pro is a Ruby on Rails monolith application designed as a digital playbook for Dungeons and Dragons players. It enables users to easily organize and track their campaign settings, characters, and more, all in one place. Leveraging the features of Rails 7, this tool provides an enjoyable and easygoing experience, making game organization a breeze.
+<p> Campaign Planner Pro is a Ruby on Rails monolith application designed as a digital playbook for Dungeons and Dragons players. It enables users to easily organize and track their campaign settings, characters, and more, all in one place. Leveraging the features of Rails 7, this tool provides an enjoyable and easygoing experience, making game organization a breeze.
+</p>
 
 <details>
 <summary>The Team Behind Campaign Planner Pro</summary>
@@ -44,5 +45,150 @@ Campaign Planner Pro is a Ruby on Rails monolith application designed as a digit
 - Gabe Torres [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Gabe-Torres) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gabe-torres-74a515269/)
 - Maria Torres [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tmaria17) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariavictoriatorres/)
 - Trevor Robinson [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Trevor-Robinson) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/trevor-robinson1254/)
+</details>
+
+
+--- 
+
+## Summary 
+- [Important Links](#important-links)
+- [Getting Started](#getting-started)
+- [Routes](#routes)
+- [Test Suite](#test-suite)
+- [Reflection](#reflection)
+
+
+## Important Links
+- [Back-End production site](https://campaign-planner-pro-825f9d3df879.herokuapp.com/users/sign_in)
+
+
+## Getting Started
+<details>
+<summary>Database Information</summary>
+
+**Schema**
+
+```ruby
+create_table "campaigns", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "nonplayer_characters", force: :cascade do |t|
+    t.string "name"
+    t.string "background"
+    t.bigint "campaign_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_nonplayer_characters_on_campaign_id"
+  end
+
+  create_table "player_characters", force: :cascade do |t|
+    t.string "name"
+    t.string "background"
+    t.bigint "campaign_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_player_characters_on_campaign_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "campaigns", "users"
+  add_foreign_key "nonplayer_characters", "campaigns"
+  add_foreign_key "player_characters", "campaigns"
+end
+```
+
+**Gems**
+```ruby
+gem "rails", "~> 7.0.8"
+gem "sprockets-rails"
+gem "pg", "~> 1.1"
+gem "puma", "~> 5.0"
+gem "importmap-rails"
+gem "turbo-rails"
+gem "tailwindcss-rails"
+gem "stimulus-rails" 
+gem "jbuilder"
+gem 'hotwire-rails'
+gem "bcrypt", "~> 3.1.7"
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "bootsnap", require: false
+
+group :development, :test do
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'pry'
+  gem 'active_designer'
+  gem 'factory_bot'
+  gem 'simplecov', require: false, group: :test
+end
+
+group :development do
+  gem "web-console"
+end
+
+gem "devise", "~> 4.9"
+```
+
+**Installing**
+ - Fork and clone this repo
+  - Run `bundle install`
+  - Run `rails db:{create,migrate,seed}`
+  - Run `rails s` to start the server
+  - Open your browser and navigate to `localhost:3000`
+</details>
+
+## Routes
+
+| Action | Route |
+| ----------- | ----------- |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+|  | '/' |
+
+
+## Test Suite
+ - run `bundle exec rspec` to run the test suite
+
+<details>
+<summary>Happy Path</summary>
+    
+```ruby
+```
+
+</details>
+
+<details>
+<summary>Sad Path</summary>
+
+```ruby
+```
+
 </details>
 
