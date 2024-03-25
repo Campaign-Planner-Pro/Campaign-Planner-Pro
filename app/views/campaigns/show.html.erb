@@ -56,6 +56,30 @@
   </div>
 </div>
 
+<div class="w-full">
+ 
+
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-bold">Regions</h1>
+    <%= link_to "New Region", new_campaign_region_path(@campaign), class: "btn btn-primary",
+      data: {turbo_frame: "slide-over"}  %>
+  </div>
+
+  <div id="npcs" class="min-w-full">
+      <ul>
+      <% @campaign.regions.order(:name).each do |region| %>
+        <ul>Name: <%= region.name %></ul>
+          <span>
+            <%= link_to "Delete #{region.name}", campaign_region_path(@campaign, region), method: :delete, class: "btn btn-primary", data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{region.name}"} %>
+          </span>
+          <span>
+            <%= link_to "Update #{region.name}", edit_campaign_region_path(@campaign, region), method: :get, class: "btn btn-primary", data: { "turbo-frame": "slide-over" } %>
+          </span><br>
+      <% end %>
+        </ul>
+  </div>
+</div>
+
 <!-- This will be empty when the page loads -->
 <%= turbo_frame_tag "slide-over" %>
 

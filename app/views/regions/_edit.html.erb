@@ -1,0 +1,6 @@
+<%= form_with model: @region, url: campaign_region_path(@campaign, @region), method: :patch do |f| %>
+    <%= f.label :name  %>
+    <%= f.text_field :name %>
+  
+    <%= f.submit data: {turbo_frame: "_top"} %>
+  <% end %>
