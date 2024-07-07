@@ -22,7 +22,6 @@ RSpec.describe 'User creates a new region', type: :feature do
       expect(current_path).to eq(campaign_path(@campaign1))
       expect(page).to have_content('Region was successfully created.')
 
-      region = Region.find_by(name: 'The Shire')
       expect(page).to have_content('The Shire')
     end
   end

@@ -1,8 +1,8 @@
 class RegionsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_campaign, only: %I[new create destroy edit update]
   
     def new
-      @campaign = Campaign.find(params[:campaign_id])
       @region = @campaign.regions.new
     end
   
@@ -25,16 +25,14 @@ class RegionsController < ApplicationController
     end
   
     def edit
-      @campaign = Campaign.find(params[:campaign_id])
       @region = Region.find(params[:id])
     end
   
     def update
-      campaign = Campaign.find(params[:campaign_id])
       region = Region.find(params[:id])
   
       if region.update(region_params)
-        redirect_to campaign_path(campaign)
+        redirect_to campaign_path(@campaign)
         flash[:notice] = 'Region was successfully updated.'
       else
         render :edit

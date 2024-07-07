@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :nonplayer_characters, only: %i[new create edit update destroy], expect: [:show]
     resources :player_characters, only: %i[new create edit update destroy], expect: [:show]
-    resources :regions, only: %i[new create edit update destroy], expect: [:show]
+    resources :regions, only: %i[new create edit update destroy], expect: [:show] do
+      resources :settlements, only: %i[new create edit update destroy], expect: [:show]
+    end  
   end
 
   devise_for :users, controllers: {

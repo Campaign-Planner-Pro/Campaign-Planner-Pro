@@ -1,0 +1,13 @@
+<%= form_with model: @settlement, url: campaign_region_settlements_path(@campaign, @region), local: true do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
+      <%= f.label :size %>
+      <%= f.select :size, ["Village", "Town", "City"], required: true %>
+      <%= f.label :government %>
+      <%= f.text_area :government, required: true %>
+      <%= f.label :atmosphere %>
+      <%= f.text_area :atmosphere, required: true %>
+    </p>
+    <%= f.submit data: { turbo_frame: "_top"} %>
+<% end %>

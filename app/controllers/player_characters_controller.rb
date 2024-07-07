@@ -1,8 +1,8 @@
 class PlayerCharactersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_campaign, only: %I[new create destroy edit update]
 
   def new
-    @campaign = Campaign.find(params[:campaign_id])
     @player_character = @campaign.player_characters.new
   end
 
@@ -25,16 +25,14 @@ class PlayerCharactersController < ApplicationController
   end
 
   def edit
-    @campaign = Campaign.find(params[:campaign_id])
     @player_character = PlayerCharacter.find(params[:id])
   end
 
   def update
-    campaign = Campaign.find(params[:campaign_id])
     player_character = PlayerCharacter.find(params[:id])
 
     if player_character.update(player_character_params)
-      redirect_to campaign_path(campaign)
+      redirect_to campaign_path(@campaign)
       flash[:notice] = 'Player Character was successfully updated.'
     else
       render :edit
