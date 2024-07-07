@@ -1,0 +1,7 @@
+<%= form_with model: @region, url: campaign_regions_path(@campaign), local: true do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
+    </p>
+    <%= f.submit data: { turbo_frame: "_top"} %>
+  <% end %>

@@ -1,9 +1,8 @@
 class NonplayerCharactersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_campaign, only: [:new, :create, :destroy]
+  before_action :set_campaign, only: [:new, :create, :destroy, :edit, :update]
 
   def new
-    @campaign = Campaign.find(params[:campaign_id])
     @nonplayer_character = @campaign.nonplayer_characters.new
   end
 
@@ -26,16 +25,14 @@ class NonplayerCharactersController < ApplicationController
   end
 
   def edit
-    @campaign = Campaign.find(params[:campaign_id])
     @nonplayer_character = NonplayerCharacter.find(params[:id])
   end
 
   def update
-    campaign = Campaign.find(params[:campaign_id])
     nonplayer_character = NonplayerCharacter.find(params[:id])
 
     if nonplayer_character.update(nonplayer_character_params)
-      redirect_to campaign_path(campaign)
+      redirect_to campaign_path(@campaign)
       flash[:notice] = 'Nonplayer Character was successfully updated.'
     else
       render :edit
